@@ -1,0 +1,28 @@
+---
+layout: common
+---
+
+
+<div class="home-title box">
+  <img src="/assets/img/home.jpg" class="title-bg" alt="">
+  <div class="box-content">
+     <div> {{ content }} </div> 
+  </div>  
+</div> 
+<main class="page-content" aria-label="Content">
+  <div class="wrapper">
+    <div class="home">
+      <ul class="post-list">
+        {% for post in site.posts %}
+          <li>
+            <h2>
+              <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+            </h2>
+            <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</main>
+
