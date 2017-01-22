@@ -13,13 +13,13 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: Asjoy static Blog
+title: Asjoy's Blog 
 emai1: 1347827212@qq.com
 description: > 
     just for web font-end sharing, mybe sometimes java. to be better together  
 baseurl: "" # the subpath of your site, e.g. /blog"
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: niuyuanqiang
+twitter_username: 元强
 github_username:  AsJoy
 
 # Build settings
