@@ -10,6 +10,21 @@ categories: webkit performance
 
 
 看下面这个例子：
+
+```ruby  
+    var iWidth = oElement.clientWith;
+    oElement.style.width = iWidth + 100 + 'px';
+    var iWidth1 = oElement1.clientWith;
+    oElement1.style.width = iWidth1 + 100 + 'px';
+```   
+
+```ruby  
+    var iWidth = oElement.clientWith;
+    oElement.style.width = iWidth + 100 + 'px';
+    var iWidth1 = oElement1.clientWith;
+    oElement1.style.width = iWidth1 + 100 + 'px';
+```   
+
 ```ruby  
     var iWidth = oElement.clientWith;
     oElement.style.width = iWidth + 100 + 'px';
