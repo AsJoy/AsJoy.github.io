@@ -28,7 +28,8 @@
 .site-nav {
   float: right;
   line-height: 56px;
-
+  position:relative;
+  z-index: 2;
   .menu-icon {
     display: none;
   }
