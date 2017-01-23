@@ -10,29 +10,29 @@ categories: webkit performance
 
 
 看下面这个例子：
-```js
+```js  
     var iWidth = oElement.clientWith;
     oElement.style.width = iWidth + 100 + 'px';
     var iWidth1 = oElement1.clientWith;
     oElement1.style.width = iWidth1 + 100 + 'px';
-```
+```   
 当 `oElement.style.width = iWidth + 100 + 'px';`时，浏览器缓存更新更新并等待当前帧运行结束， 这时又发生了一次dom属性的读取，浏览器会触发同步reflow 后在执行对dom的读取，这种更新如果批量进行在比较现代的浏览器上的体验不是很明显但是在移动端与一些老旧的浏览器上消耗的性能还是很明显的
  
 ## 解决方案
 
 ### 调整dom执行顺序
 以上例来说，我们只需要改成就可以了
-```js
+```js   
     var iWidth = oElement.clientWith;
     var iWidth1 = oElement1.clientWith;
     oElement.style.width = iWidth + 100 + 'px';
     oElement1.style.width = iWidth1 + 100 + 'px';
-```
+```   
 以上方法浏览器会等待js执行结束并批量更新。  
 &nbsp;&nbsp;&nbsp;&nbsp;但是实际业务中，我们为了业务的需要会将代码尽量解耦，如果我们按照这个方案处理的话，我们就需要调整代码执行顺序， 导致代码的混乱不堪。这个时候我们就需要raf(`requestAnimationFrame`)来解决这个问题：
 ### raf 解决方案
 &nbsp;&nbsp;&nbsp;&nbsp;`requestAnimationFrame` 是通过将所有的dom操作放到下一帧去处理  
-  
+
 ```js
 	var iWidth = oElement.clientWith;
 	requestAnimationFrame(function() {
