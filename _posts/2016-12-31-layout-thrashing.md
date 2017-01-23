@@ -36,7 +36,7 @@ categories: webkit performance
 &nbsp;&nbsp;&nbsp;&nbsp;`requestAnimationFrame` 是通过将所有的dom操作放到下一帧去处理  
 
 ```js
-	var iWidth = oElement.clientWith;
+    var iWidth = oElement.clientWith;
 	requestAnimationFrame(function() {
 	  oElement.style.width = iWidth + 100 + 'px';
 	});
