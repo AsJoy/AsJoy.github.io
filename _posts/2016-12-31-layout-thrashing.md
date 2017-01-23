@@ -32,18 +32,19 @@ categories: webkit performance
 ```   
 以上方法浏览器会等待js执行结束并批量更新。  
 &nbsp;&nbsp;&nbsp;&nbsp;但是实际业务中，我们为了业务的需要会将代码尽量解耦，如果我们按照这个方案处理的话，我们就需要调整代码执行顺序， 导致代码的混乱不堪。这个时候我们就需要raf(`requestAnimationFrame`)来解决这个问题：
+
 ### raf 解决方案
 &nbsp;&nbsp;&nbsp;&nbsp;`requestAnimationFrame` 是通过将所有的dom操作放到下一帧去处理  
 
 ```js
     var iWidth = oElement.clientWith;
-	requestAnimationFrame(function() {
-	  oElement.style.width = iWidth + 100 + 'px';
-	});
-	var iWidth1 = oElement1.clientWith;
-	requestAnimationFrame(function() {
-	  oElement1.style.width = iWidth1 + 100 + 'px';
-	});
+    requestAnimationFrame(function() {
+      oElement.style.width = iWidth + 100 + 'px';
+    });
+    var iWidth1 =oElement1.clientWith;
+    requestAnimationFrame(function() {
+      oElement1.style.width = iWidth1 + 100 + 'px';
+    });
 ```    
 如果需要调整dom的执行顺序可以通过 **回事件调** 的方式去处理。
 
