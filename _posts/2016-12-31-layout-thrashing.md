@@ -17,7 +17,7 @@ categories: webkit performance
     oElement1.style.width = iWidth1 + 100 + 'px';
 ~~~
 当 `oElement.style.width = iWidth + 100 + 'px';`时，浏览器缓存更新更新并等待当前帧运行结束， 这时又发生了一次dom属性的读取，浏览器会触发同步reflow 后在执行对dom的读取，这种更新如果批量进行在比较现代的浏览器上的体验不是很明显但是在移动端与一些老旧的浏览器上消耗的性能还是很明显的
-
+ 
 ## 解决方案
 
 ### 调整dom执行顺序
