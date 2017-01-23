@@ -10,7 +10,7 @@ categories: webkit performance
 
 
 看下面这个例子：
-```js  
+```ruby  
     var iWidth = oElement.clientWith;
     oElement.style.width = iWidth + 100 + 'px';
     var iWidth1 = oElement1.clientWith;
@@ -22,7 +22,7 @@ categories: webkit performance
 
 ### 调整dom执行顺序
 以上例来说，我们只需要改成就可以了
-```js   
+```ruby   
     var iWidth = oElement.clientWith;
     var iWidth1 = oElement1.clientWith;
     oElement.style.width = iWidth + 100 + 'px';
@@ -33,7 +33,7 @@ categories: webkit performance
 ### raf 解决方案
 &nbsp;&nbsp;&nbsp;&nbsp;`requestAnimationFrame` 是通过将所有的dom操作放到下一帧去处理  
 
-```js
+```ruby
 	var iWidth = oElement.clientWith;
 	requestAnimationFrame(function() {
 	  oElement.style.width = iWidth + 100 + 'px';
