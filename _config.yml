@@ -19,7 +19,7 @@ description: >
     just for web font-end sharing, mybe sometimes java. to be better together  
 baseurl: "" # the subpath of your site, e.g. /blog"
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: 元强
+twitter_username: niuyuanqiang
 github_username:  AsJoy
 
 # Build settings
