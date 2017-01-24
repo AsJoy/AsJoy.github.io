@@ -20,13 +20,13 @@ categories: webkit performance
 5. platformAPI是提供与底层驱动的交互， 如网络， 字体渲染， 影音文件解码等， 渲染引擎（webkit将所有的render都交给platform处理， 值得一提的是不同的浏览器会选择不同的渲染引擎， 想chrome为了保持不同平台尽可能的一致，采用的是skia， 而安卓是完全交给android stack来处理的，这也是为什么不同款的安卓机展示的出的ui有些是不同的）
 
 ## webkit工作流程
-going on
+to be continue
 
 ## 硬件加速
-going on
+to be continue
 
 ## 关于 60fps
-going on
+to be continue
 
 
 
