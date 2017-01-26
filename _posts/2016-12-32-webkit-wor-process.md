@@ -11,7 +11,8 @@ categories: webkit performance
 ## webkit组成部分
 见下图：    
 
-![webkit](/asset/img/webkit-diagram.png)
+![webkit](/asset/img/webkit-diagram.png)    
+
 
 1. browser UI比如浏览器的书签栏搜索栏等    
 2. webkit Embedding API是webkit嵌入的api接口，browser UI通过webkit Embedding API与webpage进行交互。    
@@ -54,7 +55,8 @@ img { float: right }
 
 ### htmlParser解析构建dom tree
 
-dom解析需要经过以下步骤
+dom解析需要经过以下步骤    
+
 1. 转换：浏览器从磁盘或网络读取 HTML 的原始字节，然后根据指定的文件编码格式（例如 UTF-8）将其转换为相应字符。
 2. 符号化：浏览器将字符串转换为 W3C HTML5 标准 指定的各种符号 - 比如 ""、"" 及其他「尖括号」内的字符串。每个符号都有特殊含义并一套规则。
 3. 词法分析：发射的符号转换为「对象」，定义它们的属性与规则。
@@ -68,7 +70,8 @@ dom解析需要经过以下步骤
 ![dom construction](/asset/img/webkit-work-cssom.png)
 
 ### 经过layout/reflow构建出render tree
-大致步骤如下： 
+大致步骤如下：    
+
 1. 从 DOM 树的根节点开始，遍历每个可见的节点。
 2. 某些节点完全不可见（例如 script 标签、meta 标签等），因为它们不会在渲染结果中反映，所以会被忽略。
 3. 某些节点通过 CSS 隐藏，因此在渲染树中也会被忽略。比方说，上面例子中的 span 节点，因为该节点有一条显式规则设置了 display:none 属性，所以不会出现在渲染树中。
@@ -86,7 +89,8 @@ dom解析需要经过以下步骤
 ### paint简介  
 由webkit工作流程图可知， 当我们触发layout层的时候(修改dom布局的几何属性时触发，具体参考我的另一篇blog [DOM批量处理与 layout thrashing](/webkit/performance/2017/01/10/layout-thrashing.html) ），必然会触发paint层或repaint层。触发一些非布局几何属性例如background, box-shdow等也会触发。paint过程是填充像素的过程，这些像素将最终显示在用户的屏幕上。通常这个过程是最消耗时长的一环。    
 
-绘制过程并非单层绘制，而是多层绘制后并合并成渲染层，最后合并为一层。以下列出了产生新的渲染层的条件
+绘制过程并非单层绘制，而是多层绘制后并合并成渲染层，最后合并为一层。以下列出了产生新的渲染层的条件:
+
 1. 3D 或透视变换(perspective transform) CSS 属性
 2. 使用加速视频解码的 元素
 3. 拥有 3D (WebGL) 上下文或加速的 2D 上下文的 元素
