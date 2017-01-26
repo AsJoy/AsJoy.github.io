@@ -65,6 +65,10 @@ categories: webkit performance
 ```    
 如果需要调整dom的执行顺序可以通过 **事件回调** 的方式去处理。
 
+## 参考资料(可能需要翻墙)
+1. [避免大规模、复杂的布局](https://developers.google.cn/web/fundamentals/performance/rendering/avoid-large-complex-layouts-and-layout-thrashing?hl=zh-cn)
+
 > 业界现在比较流行的框架像 [react](https://facebook.github.io/react/) 等都对这种dom批量插入做了非常好的处理，专注于dom批量处理的库可以采用 [fastdom](https://github.com/wilsonpage/fastdom) 的方式
+
 
 
