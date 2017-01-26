@@ -6,7 +6,7 @@ categories: webkit performance
 ---
 
 ## 关于layout thrashing
-&nbsp;&nbsp;&nbsp;&nbsp;当对dom节点一些布局属性发生改变时，往往会导致浏览器布局的重绘，重绘简单的说就是cpu将整个 `render tree `按照像素点计算一遍并显示在浏览器上。 浏览器内核为了尽可能的避免重绘，采取了一种`lazy load`的方式，当对dom节点布局属性发生写的操作时浏览器会等待直到当前的操作结束，才会触发布局重绘(`layout reflow`)，但是如果当前运行帧中调用dom布局属性的写入后并重新读取， dom会强制同步更新(`forced synchonous layout`)以便dom布局属性的正常读取。这种dom的批量就会导致layout thrashing的产生
+&nbsp;&nbsp;&nbsp;&nbsp;当对dom节点一些布局属性发生改变时，往往会导致浏览器布局的重绘，重绘简单的说就是cpu将整个 `render tree `按照像素点计算一遍并显示在浏览器上。 浏览器内核为了尽可能的避免重绘，采取了一种`lazy load`的方式，当对dom节点布局属性发生写的操作时浏览器会等待直到当前的操作结束，才会触发布局重绘，但是如果当前运行帧中调用dom布局属性的写入后并重新读取， dom会强制同步更新(`forced synchonous layout`)以便dom布局属性的正常读取。这种dom的批量就会导致layout thrashing的产生
 
 
 看下面这个例子：
@@ -17,7 +17,7 @@ categories: webkit performance
     var iWidth1 = oElement1.clientWith;
     oElement1.style.width = iWidth1 + 100 + 'px';
 ```   
-当 `oElement.style.width = iWidth + 100 + 'px';`时，浏览器缓存更新并等待当前帧运行结束， 这时又发生了一次dom布局属性的读取，浏览器会触发同步reflow 后在执行对dom的读取，这种更新如果批量进行在比较现代的浏览器上的体验不是很明显但是在移动端与一些老旧的浏览器上消耗的性能还是很明显的
+当 `oElement.style.width = iWidth + 100 + 'px';`时，浏览器缓存更新并等待当前帧运行结束， 这时又发生了一次dom布局属性的读取，浏览器会触发同步强制更新layout，之后在执行对dom的读取，这种更新如果批量进行在比较现代的浏览器上的体验不是很明显但是在移动端与一些老旧的浏览器上消耗的性能还是很明显的
 
 ## 以下列举了会导致layout thrashing的dom属性
 
