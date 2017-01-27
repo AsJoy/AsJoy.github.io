@@ -121,7 +121,7 @@ dom解析需要经过以下步骤
 创建一个新的渲染层并不是免费的，它得消耗额外的内存和管理资源。实际上，在内存资源有限的设备上，由于过多的渲染层来带的开销而对页面渲染性能产生的影响，甚至远远超过了它在性能改善上带来的好处。由于每个渲染层的纹理都需要上传到GPU处理，因此我们还需要考虑CPU和GPU之间的带宽问题、以及有多大内存供GPU处理这些纹理的问题。
 
 
-推荐资料  
+参考资料  
 
 > 1. [简化绘制的复杂度、减小绘制区域](https://developers.google.cn/web/fundamentals/performance/rendering/simplify-paint-complexity-and-reduce-paint-areas?hl=zh-cn)
 > 2. [优先使用渲染层合并属性、控制层数量](https://developers.google.cn/web/fundamentals/performance/rendering/stick-to-compositor-only-properties-and-manage-layer-count?hl=zh-cn)
