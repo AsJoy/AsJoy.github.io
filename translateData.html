@@ -191,11 +191,11 @@ body {
       if (a.lastIndexOf(']') === a.length - 1 )  a = a.substr(0, a.length - 1);
 
       var b = a
-      var c = "<tr><td>tag</td><td>name</td><td>value</td></tr>" + b.replace(/(\([0-9a-zA-Z,\s]*\))([\sa-z'A-Z\/\-\(\)]*)\s+([a-zA-Z]*:.*?(?=\(\s*[0-9a-zA-Z\s]+(\s*,\s*[0-9a-zA-Z\s]*)+\s*\)+))/g, ($0, $1,$2, $3, str) => {
+      var c = "<tr><td>tag</td><td>name</td><td>value</td></tr>" + b.replace(/(\([0-9a-zA-Z,\s]*\))([\sa-z'A-Z\/\-\(\)]*)\s+(([a-zA-Z]*:.*?|\s*[0-9]+\s*item\(s\)\s*----\s*)(?=\(\s*[0-9a-zA-Z\s]+(\s*,\s*[0-9a-zA-Z\s]*)+\s*\)+))/g, ($0, $1,$2, $3, str) => {
         return "<tr><td>"+ __escapehtml.escaping($1.trim()) + "</td><td>" + __escapehtml.escaping($2.trim()) + "</td><td>" + __escapehtml.escaping($3.trim()) + "</td></tr>"
       })
       var d = c.match(/\(\s*[0-9a-zA-Z\s]+(\s*,\s*[0-9a-zA-Z\s]*)+\s*\)/g) ///(\([0-9a-zA-Z,\s]*\))([\sa-z'A-Z\/\-\(\)]*)\s+([a-zA-Z]*:.*?(?=\(\s*[0-9a-zA-Z\s]+(\s*,\s*[0-9a-zA-Z\s]*)+\s*\)))/g
-      var e = b.substr(b.lastIndexOf(d[d.length -1])).replace(/(\([0-9a-zA-Z,\s]*\))([\sa-z'A-Z\/\-\(\)]*)\s+([a-zA-Z]*:.*)/g, ($0, $1,$2, $3, str) => {
+      var e = b.substr(b.lastIndexOf(d[d.length -1])).replace(/(\([0-9a-zA-Z,\s]*\))([\sa-z'A-Z\/\-\(\)]*)\s+(([a-zA-Z]*:.*|\s*[0-9]+\s*item\(s\)\s*----\s*))/g, ($0, $1,$2, $3, str) => {
         return "<tr><td>" + __escapehtml.escaping($1.trim()) + "</td><td>" + __escapehtml.escaping($2.trim()) + "</td><td>" + __escapehtml.escaping($3.trim()) + "</td></tr>"
       })
       console.log(c, e)
