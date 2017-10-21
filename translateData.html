@@ -65,7 +65,7 @@ fieldset[disabled] a.btn {
     padding: 6px 12px;
     font-size: 14px;
     line-height: 1.42857143;
-    color: #555;
+    color: #fff;
     background-image: none;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -98,6 +98,7 @@ pre {
 }
 html, body {
   width: 100%;
+  color: #fff;
   height: 100%;
 }
 body {
@@ -109,6 +110,53 @@ body {
   overflow: auto;
 }
 #app { height: 100%; overflow: auto; }
+.table th,
+.table td {
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 1px solid #e9ecef;
+}
+
+.table thead th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #e9ecef;
+}
+
+.table tbody + tbody {
+  border-top: 2px solid #e9ecef;
+}
+
+.table .table {
+  background-color: #fff;
+}
+
+.table-sm th,
+.table-sm td {
+  padding: 0.3rem;
+}
+
+.table-bordered {
+  border: 1px solid #e9ecef;
+}
+
+.table-bordered th,
+.table-bordered td {
+  border: 1px solid #e9ecef;
+}
+
+.table-bordered thead th,
+.table-bordered thead td {
+  border-bottom-width: 2px;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.table-hover tbody tr:hover {
+  background-color: rgba(0, 0, 0, 0.075);
+}
+
   </style>
 </head>
 <body>
@@ -118,7 +166,7 @@ body {
     <textarea class="form-control" cols="30" rows="10" placeholder="请输入类似格式为格式[(0008, 0005) Specific Character Set CS: 'ISO_IR 100', (0008, 0008) Image Type CS: ['ORIGINAL', 'PRIMARY', 'AXIAL', 'HEL    IX']]"></textarea>
     <button class="btn btn-primary" id="aaa">转换</button>
   </div>
-  <pre id="result"></pre>
+  <table class="table" id="result"></table>
   </div>
   <script>
     var __escapehtml = {
@@ -138,16 +186,19 @@ body {
     },
   };
     function translate(a) {
-      var b = a.substr(1).substr(0, a.length-2)
-      var c = "tag\tname\tvalue\n" + b.replace(/(\([0-9a-zA-Z,\s]*\))([\sa-z'A-Z\/\-\(\)]*)\s+([a-zA-Z]*:.*?(?=\(\s*[0-9a-zA-Z\s]+(\s*,\s*[0-9a-zA-Z\s]*)+\s*\)+))/g, ($0, $1,$2, $3, str) => {
-        console.log($3)
-        return __escapehtml.escaping($1.trim()) + "\t" + __escapehtml.escaping($2.trim()) + "\t" + __escapehtml.escaping($3.trim()) + "\n"
+      a = a.replace(/[\r\n]/g, '')
+      if (a.indexOf('[') === 0)  a = a.substr(1);
+      if (a.lastIndexOf(']') === a.length - 1 )  a = a.substr(0, a.length - 1);
+
+      var b = a
+      var c = "<tr><td>tag</td><td>name</td><td>value</td></tr>" + b.replace(/(\([0-9a-zA-Z,\s]*\))([\sa-z'A-Z\/\-\(\)]*)\s+([a-zA-Z]*:.*?(?=\(\s*[0-9a-zA-Z\s]+(\s*,\s*[0-9a-zA-Z\s]*)+\s*\)+))/g, ($0, $1,$2, $3, str) => {
+        return "<tr><td>"+ __escapehtml.escaping($1.trim()) + "</td><td>" + __escapehtml.escaping($2.trim()) + "</td><td>" + __escapehtml.escaping($3.trim()) + "</td></tr>"
       })
       var d = c.match(/\(\s*[0-9a-zA-Z\s]+(\s*,\s*[0-9a-zA-Z\s]*)+\s*\)/g) ///(\([0-9a-zA-Z,\s]*\))([\sa-z'A-Z\/\-\(\)]*)\s+([a-zA-Z]*:.*?(?=\(\s*[0-9a-zA-Z\s]+(\s*,\s*[0-9a-zA-Z\s]*)+\s*\)))/g
-      var e = b.substr(b.lastIndexOf(d[d.length -1])).replace(/(\([0-9a-zA-Z,\s]*\))([\sa-z'A-Z\/\-\(\)]*)\s+([a-zA-Z]*:.*?)/g, ($0, $1,$2, $3, str) => {
-        console.log($3)
-        return __escapehtml.escaping($1.trim()) + "\t" + __escapehtml.escaping($2.trim()) + "\t" + __escapehtml.escaping($3.trim())
+      var e = b.substr(b.lastIndexOf(d[d.length -1])).replace(/(\([0-9a-zA-Z,\s]*\))([\sa-z'A-Z\/\-\(\)]*)\s+([a-zA-Z]*:.*)/g, ($0, $1,$2, $3, str) => {
+        return "<tr><td>" + __escapehtml.escaping($1.trim()) + "</td><td>" + __escapehtml.escaping($2.trim()) + "</td><td>" + __escapehtml.escaping($3.trim()) + "</td></tr>"
       })
+      console.log(c, e)
       return c.substr(0, c.lastIndexOf(d[d.length -1])) + e
     }
     document.querySelector('#aaa').addEventListener('click', (e) => {
